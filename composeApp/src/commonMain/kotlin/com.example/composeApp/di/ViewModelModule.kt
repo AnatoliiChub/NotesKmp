@@ -6,5 +6,5 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     factory { NoteListViewModel(get()) }
-    factory { params -> NoteDetailsViewModel(params.get(), get()) }
+    factory { params -> NoteDetailsViewModel(params.get(), get(), get()) }
 }

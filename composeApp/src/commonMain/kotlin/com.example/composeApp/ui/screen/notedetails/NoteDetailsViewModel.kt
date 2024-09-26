@@ -4,6 +4,7 @@ import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope
 import com.example.composeApp.data.Note
 import com.example.composeApp.data.NoteRepository
+import com.example.composeApp.util.DateFormatter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -12,10 +13,16 @@ import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.datetime.Clock
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-class NoteDetailsViewModel(noteId: String, private val noteRepo: NoteRepository) : ScreenModel {
+class NoteDetailsViewModel(
+    noteId: String,
+    private val noteRepo: NoteRepository,
+    private val dateFormatter: DateFormatter,
+) :
+    ScreenModel {
     private val title = MutableStateFlow("")
     private val description = MutableStateFlow("")
     private val date = MutableStateFlow("")
@@ -63,8 +70,7 @@ class NoteDetailsViewModel(noteId: String, private val noteRepo: NoteRepository)
                     id = id.value,
                     title = title.value,
                     content = description.value,
-                    // TODO: implement date formatter
-                    date = "SOME DATE"
+                    date = dateFormatter.format(Clock.System.now())
                 )
             )
             onSaved()
