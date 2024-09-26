@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.compose.compiler)
+    id("io.realm.kotlin") version "2.3.0"
 }
 
 kotlin {
@@ -35,6 +36,12 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+            implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.3"))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+            implementation (libs.lifecycle.runtime.compose)
+
+            implementation(libs.realm.lib)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -44,9 +51,26 @@ kotlin {
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(projects.shared)
+
+            implementation(libs.voyager.navigator)
+            implementation(libs.voyager.screenmodel)
+            implementation(libs.voyager.koin)
+
+            implementation(project.dependencies.platform("io.insert-koin:koin-bom:3.5.3"))
+            implementation(libs.koin.core)
+            implementation(libs.koin.compose)
+
+            implementation(libs.realm.lib)
+            implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.datetime)
         }
         desktopMain.dependencies {
+            implementation(libs.realm.lib)
+            implementation(compose.components.resources)
             implementation(compose.desktop.currentOs)
+        }
+        iosMain.dependencies {
+            implementation(libs.realm.lib)
         }
     }
 }
