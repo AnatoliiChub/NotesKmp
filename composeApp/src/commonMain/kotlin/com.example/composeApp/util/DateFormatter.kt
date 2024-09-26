@@ -12,12 +12,12 @@ class DateFormatter {
      */
     fun format(date: Instant): String = date.format(DateTimeComponents.Format {
         dayOfMonth()
-        char('-');
-        monthNumber();
-        char('-');
-        year();
+        char('-')
+        monthNumber()
+        char('-')
+        year()
 
-        char(' ');
+        char(' ')
 
         hour()
         char(':')
