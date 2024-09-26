@@ -21,8 +21,8 @@ class NoteDetailsViewModel(
     noteId: String,
     private val noteRepo: NoteRepository,
     private val dateFormatter: DateFormatter,
-) :
-    ScreenModel {
+) : ScreenModel {
+    
     private val title = MutableStateFlow("")
     private val description = MutableStateFlow("")
     private val date = MutableStateFlow("")
