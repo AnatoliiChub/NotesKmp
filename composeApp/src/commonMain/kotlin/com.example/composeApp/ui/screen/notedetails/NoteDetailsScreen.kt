@@ -15,7 +15,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -23,6 +22,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.composeApp.collectAsStateMultiplatform
 import com.example.composeApp.ui.backgroundColor
 import noteskmp.composeapp.generated.resources.Res
 import noteskmp.composeapp.generated.resources.add_note
@@ -37,7 +37,7 @@ class NoteDetailsScreen(private val id: String) : Screen {
     @Composable
     override fun Content() {
         val viewModel = koinScreenModel<NoteDetailsViewModel>(parameters = { parametersOf(id) })
-        val state = viewModel.state.collectAsState()
+        val state = viewModel.state.collectAsStateMultiplatform()
         val navigator = LocalNavigator.currentOrThrow
         Scaffold(
             topBar = {

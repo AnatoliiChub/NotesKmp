@@ -6,7 +6,7 @@ import io.realm.kotlin.UpdatePolicy
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-class RealmNoteRepository(private val config: RealmConfiguration) : NoteRepository {
+class RealmNoteRepository(config: RealmConfiguration) : NoteRepository {
 
     private val realm = Realm.open(config)
 

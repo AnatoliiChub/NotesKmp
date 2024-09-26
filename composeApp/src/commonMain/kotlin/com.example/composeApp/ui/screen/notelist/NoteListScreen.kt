@@ -13,7 +13,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -21,6 +20,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.composeApp.collectAsStateMultiplatform
 import com.example.composeApp.ui.backgroundColor
 import com.example.composeApp.ui.screen.notedetails.NoteDetailsScreen
 import com.example.composeApp.ui.view.NoteListItem
@@ -35,7 +35,7 @@ class NoteListScreen : Screen {
     override fun Content() {
         val navigator = LocalNavigator.currentOrThrow
         val viewModel = koinScreenModel<NoteListViewModel>()
-        val notes = viewModel.state.collectAsState().value
+        val notes = viewModel.state.collectAsStateMultiplatform().value
         Scaffold(topBar = {
             TopAppBar(title = {
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
