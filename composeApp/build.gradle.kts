@@ -66,6 +66,7 @@ kotlin {
         }
         desktopMain.dependencies {
             implementation(libs.realm.lib)
+            implementation(compose.components.resources)
             implementation(compose.desktop.currentOs)
         }
         iosMain.dependencies {

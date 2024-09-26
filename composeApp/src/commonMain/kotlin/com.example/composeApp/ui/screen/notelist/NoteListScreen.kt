@@ -22,6 +22,10 @@ import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
 import com.example.composeApp.ui.screen.notedetails.NoteDetailsScreen
 import com.example.composeApp.ui.view.NoteListItem
+import noteskmp.composeapp.generated.resources.Res
+import noteskmp.composeapp.generated.resources.add_note
+import noteskmp.composeapp.generated.resources.notes
+import org.jetbrains.compose.resources.stringResource
 
 
 class NoteListScreen : Screen {
@@ -34,12 +38,12 @@ class NoteListScreen : Screen {
         Scaffold(topBar = {
             TopAppBar(title = {
                 Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    Text("Notes")
+                    Text(stringResource( Res.string.notes))
                 }
             })
         }, floatingActionButton = {
-            FloatingActionButton(onClick = { navigator.push(NoteDetailsScreen()) }) {
-                Icon(Icons.Filled.Add, contentDescription = "Add note")
+            FloatingActionButton(onClick = { navigator.push(NoteDetailsScreen("")) }) {
+                Icon(Icons.Filled.Add, contentDescription = stringResource( Res.string.add_note))
             }
         }) { innerPadding ->
             LazyColumn(
@@ -47,7 +51,7 @@ class NoteListScreen : Screen {
                 verticalArrangement = androidx.compose.foundation.layout.Arrangement.spacedBy(8.dp)
             ) {
                 items(notes.size, key = { notes[it].id }) { index ->
-                    NoteListItem(note = notes[index], onClick = { navigator.push(NoteDetailsScreen()) })
+                    NoteListItem(note = notes[index], onClick = { navigator.push(NoteDetailsScreen(notes[index].id)) })
                 }
             }
         }
