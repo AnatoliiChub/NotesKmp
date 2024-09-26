@@ -23,6 +23,7 @@ import cafe.adriel.voyager.core.screen.Screen
 import cafe.adriel.voyager.koin.koinScreenModel
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.example.composeApp.ui.backgroundColor
 import noteskmp.composeapp.generated.resources.Res
 import noteskmp.composeapp.generated.resources.add_note
 import noteskmp.composeapp.generated.resources.description
@@ -51,7 +52,8 @@ class NoteDetailsScreen(private val id: String) : Screen {
                         }
                     }
                 )
-            }
+            },
+            backgroundColor = backgroundColor
         ) { innerPadding ->
             Column(
                 modifier = Modifier
